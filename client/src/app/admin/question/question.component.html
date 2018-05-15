@@ -1,0 +1,40 @@
+<section class="content-header">
+    <h1>
+        Questions
+        <small>CRUD</small>
+    </h1>
+</section>
+<section class="content container-fluid">
+    <p-table [value]="questions">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Question</th>
+                <th>Topic</th>
+                <th>Target Filtering</th>
+                <th>Boundary Options</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData>
+            <tr>
+                <td>{{rowData.QuestionText}}</td>
+                <td>{{rowData.TopicName}}</td>
+                <td>
+                    {{ rowData.HasBoundaryOptions ? "Yes" : "No" }}
+                </td>
+                <td>
+                    {{ rowData.HasTargetFiltering ? "Yes" : "No" }}
+                </td>
+                <td>
+                    <a class="btn-success" [routerLink]="['/admin/questions/edit/',rowData.QuestionId]">Edit</a>
+                </td>
+                <td>
+                    <a class="btn-danger" (click)="remove(rowData.QuestionId)">Remove</a>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+    <a [routerLink]="['/admin/questions/edit']" class="m-t-20 btn btn-primary">
+        <i class="fa fa-plus"></i>&nbsp; Add</a>
+</section>

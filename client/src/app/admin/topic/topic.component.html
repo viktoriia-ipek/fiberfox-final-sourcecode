@@ -1,0 +1,133 @@
+<section class="content-header">
+    <h1>
+        Topics
+        <small>CRUD</small>
+    </h1>
+</section>
+<section class="content container-fluid">
+    <p-table [value]="topics" selectionMode="single" [(selection)]="selectedTopic" (onRowSelect)="onRowSelect($event)">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Name</th>
+                <th>Phase</th>
+                <th>Sub Category</th>
+                <th>Activity</th>
+                <th>Active</th>
+                <th>Has Question(s)</th>
+                <th>Has Target Filtering</th>
+                <th>Has Boundary Option</th>
+                <th>Delete</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData>
+            <tr [pSelectableRow]="rowData">
+                <td>{{rowData.Name}}</td>
+                <td>{{rowData.PhaseName}}</td>
+                <td>{{rowData.SubCategoryName}}</td>
+                <td>{{rowData.ActivityName}}</td>
+                <td>
+                    {{ rowData.IsActive ? "Yes" : "No" }}
+                </td>
+                <td>
+                    {{ rowData.HasQuestions ? "Yes" : "No" }}
+                </td>
+                <td>
+                    {{ rowData.HasTargetFiltering ? "Yes" : "No" }}
+                </td>
+                <td>
+                    {{ rowData.HasBoundaryOptions ? "Yes" : "No" }}
+                </td>
+                <td>
+                    <a class="btn-danger" (click)="remove(rowData.TopicId)">Remove</a>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+    <button (click)="addNew()" class="m-t-20 btn btn-primary">
+        <i class="fa fa-plus"></i>&nbsp; Add</button>
+
+    <!-- edit modal -->
+    <p-dialog header="Topic Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" [width]="500">
+        <div class="ui-g ui-fluid" *ngIf="topic">
+            <div class="ui-g-12">
+                <div class="ui-g-4">
+                    <label for="name">Name</label>
+                </div>
+                <div class="ui-g-8 p-0">
+                    <input class="form-control" required pInputText id="name" [(ngModel)]="topic.Name" />
+                </div>
+            </div>
+            <div class="ui-g-12">
+                <div class="ui-g-4">
+                    <label for="PhaceId">Phase</label>
+                </div>
+                <div *ngIf='phases && phases.length > 0' class="form-group" [ngClass]="{'has-error':PhaseId.invalid && PhaseId.touched}"
+                    class="ui-g-8 p-0">
+                    <select [(ngModel)]="topic.PhaseId" #PhaseId="ngModel" required class="form-control" name="PhaseId">
+                        <option *ngFor="let phase of phases" [value]="phase.PhaseId">{{phase.Name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="ui-g-12">
+                <div class="ui-g-4">
+                    <label for="SubCategoryId">Sub Category</label>
+                </div>
+                <div *ngIf='subCategories && subCategories.length > 0' class="form-group" [ngClass]="{'has-error':SubCategoryId.invalid && SubCategoryId.touched}"
+                    class="ui-g-8 p-0">
+                    <select [(ngModel)]="topic.SubCategoryId" #SubCategoryId="ngModel" required class="form-control" name="SubCategoryId">
+                        <option *ngFor="let subCategory of subCategories" [value]="subCategory.SubCategoryId">{{subCategory.Name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="ui-g-12">
+                <div class="ui-g-4">
+                    <label for="ActivityId">Activity</label>
+                </div>
+                <div *ngIf='activities && activities.length > 0' class="form-group" [ngClass]="{'has-error':ActivityId.invalid && ActivityId.touched}"
+                    class="ui-g-8 p-0">
+                    <select [(ngModel)]="topic.ActivityId" #ActivityId="ngModel" required class="form-control" name="ActivityId">
+                        <option *ngFor="let activity of activities" [value]="activity.ActivityId">{{activity.Name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="ui-g-12">
+                <div class="ui-g-4">
+                    <label for="IsActive">Active</label>
+                </div>
+                <div class="ui-g-8 p-0">
+                    <label>
+                        <input type="checkbox" name="IsActive" [(ngModel)]="topic.IsActive">
+                    </label>
+                </div>
+            </div>
+            <div class="ui-g-12">
+                <div class="ui-g-4">
+                    <label for="HasTargetFiltering">Has Target Filtering</label>
+                </div>
+                <div class="ui-g-8 p-0">
+                    <label>
+                        <input type="checkbox" name="HasTargetFiltering" [(ngModel)]="topic.HasTargetFiltering">
+                    </label>
+                </div>
+            </div>
+            <div class="ui-g-12">
+                <div class="ui-g-4">
+                    <label for="HasBoundaryOptions">Has Boundary Option</label>
+                </div>
+                <div class="ui-g-8 p-0">
+                    <label>
+                        <input type="checkbox" name="HasBoundaryOptions" [(ngModel)]="topic.HasBoundaryOptions">
+                    </label>
+                </div>
+            </div>
+        </div>
+        <p-footer>
+            <div class="ui-dialog-buttonpane ui-helper-clearfix">
+                <button (click)="close()" class="m-t-20 btn btn-danger">
+                    <i class="fa fa-close"></i>&nbsp; Cancel</button>
+                <button (click)="save()" class="m-t-20 btn btn-primary">
+                    <i class="fa fa-check"></i>&nbsp; Save</button>
+            </div>
+        </p-footer>
+    </p-dialog>
+</section>

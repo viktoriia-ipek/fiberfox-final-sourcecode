@@ -1,0 +1,18 @@
+<table class="table table-bordered table-hover" *ngIf="data && data.boundaryOptionValues && data.boundaryOptionValues.length > 0">
+  <tr>
+    <td style="font-weight:bold;">Boundary Options / Result Menu</td>
+    <td *ngFor="let menu of data.resultMenu">
+      {{ menu.ResultMenuName }}
+    </td>
+  </tr>
+  <tr *ngFor="let model of data.boundaryOptionValues">
+    <td>
+      {{ model.boundaryText }}
+    </td>
+    <td *ngFor="let menu of model.resultMenu">
+      <input type="number" [(ngModel)]="menu.AlgorithmValue" name="AlgorithmValue">
+    </td>
+  </tr>
+</table>
+<button (click)="saveBoundaryOptionValues()" class="btn btn-primary" [disabled]='isSavingValues'>
+  <i class="fa fa-plus"></i>&nbsp; Save</button>

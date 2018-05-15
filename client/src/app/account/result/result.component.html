@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="container">
+    <div class="box_shadow" style="border:3px solid #7f7f7f; width:100%; float:left;">
+        <div class="col-sm-2" #leftBar>
+            <div class="res-menu relevant">
+                <div class="container-el">
+                  <span>Relevant Information</span>
+                  <span *ngIf="!relevantMenu || relevantMenu.length === 0">No items</span>
+                </div>
+                <ul class="relevantMenu-ul" *ngIf="relevantMenu && relevantMenu.length > 0">
+                  <li class="item relevantMenu-li" *ngFor="let menu of relevantMenu">
+                    <a class="menu-item" (click)="showArticle(menu.ResultMenuId)">{{ menu.Name }}</a>
+                  </li>
+                </ul>
+              </div>
+              <div *ngIf="!isQuestion" class="res-menu others">
+                <div class="container-el">
+                  <span>Other Information</span>
+                  <span *ngIf="!othersMenu || othersMenu.length === 0">No items</span>
+                </div>
+                <ul *ngIf="othersMenu && othersMenu.length > 0">
+                  <li class="item" *ngFor="let menu of othersMenu">
+                    <a class="menu-item" (click)="showArticle(menu.ResultMenuId)">{{ menu.Name }}</a>
+                  </li>
+                </ul>
+              </div>
+        </div>
+      <div class="col-sm-10" #rightBar>
+        <div class="row">
+          <div class="col-sm-12">
+            <wizard [selectedStep]="'result'"></wizard>
+          </div>
+        </div>
+        <div class="row descriptionRowStyle">
+          <div *ngIf="article" class="col-sm-12 descriptionStyle">
+              <div class="descriptionOuterStyle">
+                <div [innerHtml]="article.Description"></div>
+            </div>
+          </div>
+        </div>
+        <div class="row finishStyle">
+          <div class="col-sm-12">
+            <a [routerLink]="['/account/thankyou']" class="btn btn-primary pull-right">Finish</a>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

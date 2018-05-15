@@ -1,0 +1,38 @@
+<section class="content-header">
+    <h1>
+        Registrations
+        <small>User registration requests</small>
+    </h1>
+</section>
+<section class="content container-fluid">
+    <p-table [value]="users">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Email</th>
+                <th>User name</th>
+                <th>Company name</th>
+                <th>ActivityField</th>
+                <th>Field</th>
+                <th>Activity</th>
+                <th>Experience Level</th>
+                <th>Create date</th>
+                <th>Approved</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-user>
+            <tr>
+                <td>{{user.Email}}</td>
+                <td>{{user.Username}}</td>
+                <td>{{user.CompanyName}}</td>
+                <td>{{user.ActivityField}}</td>
+                <td>{{user.FieldName}}</td>
+                <td>{{user.ActivityName}}</td>
+                <td>{{user.LevelName}}</td>
+                <td>{{user.Createdate}}</td>
+                <td>
+                    <button title="Toggle approval" (click)="changeApproval(user.IsApproved, user.UserId)" [ngClass]="user.IsApproved ? 'btn-success' : 'btn-danger'" class="btn btn-success">{{user.IsApproved ? "Yes" : "No"}}</button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</section>

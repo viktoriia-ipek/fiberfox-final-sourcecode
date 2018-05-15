@@ -1,0 +1,95 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand active" [routerLink]="['/home']">Fiberfox</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a [routerLink]="['/home']">Home</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav pull-right">
+                <li class="">
+                    <a [routerLink]="['/login']">Login</a>
+                </li>
+                <li>
+                    <a [routerLink]="['/signup']">Sign Up</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="col-sm-6 col-sm-offset-3">
+    <div class="shadowed p-100">
+        <form name="regForm" #form="ngForm">
+            <fieldset>
+                <legend>
+                    <h2>Register Here</h2>
+                </legend>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group" [ngClass]="{'has-error':Email.invalid && Email.touched}">
+                            <label class="form-control-label" for="email">Email</label>
+                            <input [(ngModel)]="model.Email" #Email="ngModel" required class="form-control" name="email" placeholder="Enter the email">
+                        </div>
+                        <div class="form-group" [ngClass]="{'has-error':Username.invalid && Username.touched}">
+                            <label class="form-control-label" for="UserName">User Name</label>
+                            <input [(ngModel)]="model.Username" #Username="ngModel" required class="form-control" name="Username" placeholder="Enter the username">
+                        </div>
+                        <div class="form-group" [ngClass]="{'has-error':Password.invalid && Password.touched}">
+                            <label class="form-control-label" for="Password">Password</label>
+                            <input [(ngModel)]="model.Password" #Password="ngModel" required class="form-control" name="Password" placeholder="Enter the password"
+                                type="password">
+                        </div>
+                        <div class="form-group" [ngClass]="{'has-error':RePassword.invalid && RePassword.touched}">
+                            <label class="form-control-label" for="ConfirmPassword">Re Password</label>
+                            <input class="form-control" [(ngModel)]="model.RePassword" #RePassword="ngModel" required name="ConfirmPassword" placeholder="Confirm password"
+                                type="password">
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div *ngIf='industryFields && industryFields.length > 0' class="form-group" [ngClass]="{'has-error':IndustryFieldId.invalid && IndustryFieldId.touched}">
+                            <label class="form-control-label" for="IndustryField">Industry Field</label>
+                            <select [(ngModel)]="model.IndustryFieldId" #IndustryFieldId="ngModel" required class="form-control" name="IndustryField">
+                                <option *ngFor="let field of industryFields" [value]="field.IndustryFieldId">{{field.FieldName}}</option>
+                            </select>
+                        </div>
+                        <div *ngIf='activityFields && activityFields.length > 0' class="form-group" [ngClass]="{'has-error':ActivityFieldId.invalid && ActivityFieldId.touched}">
+                            <label class="form-control-label" for="ActivityField">Activity Field</label>
+                            <select [(ngModel)]="model.ActivityFieldId" #ActivityFieldId="ngModel" required class="form-control" name="ActivityFieldId">
+                                <option *ngFor="let field of activityFields" [value]="field.ActivityFieldId">{{field.FieldName}}</option>
+                            </select>
+                        </div>
+                        <div class="form-group" [ngClass]="{'has-error':ActivityField.invalid && ActivityField.touched}">
+                            <label class="form-control-label" for="ActivityField">Specify ActivityField</label>
+                            <input [(ngModel)]="model.ActivityField" #ActivityField="ngModel" required class="form-control" name="ActivityField" placeholder="Enter Activity Field"
+                                type="text">
+                        </div>
+                        <div class="form-group" [ngClass]="{'has-error':CompanyName.invalid && CompanyName.touched}">
+                            <label class="form-control-label" for="CompanyName">Company Name</label>
+                            <input [(ngModel)]="model.CompanyName" #CompanyName="ngModel" required class="form-control" name="CompanyName" placeholder="Enter Company Name"
+                                type="text">
+                        </div>
+                        <div *ngIf='experienceLevels && experienceLevels.length > 0' class="form-group" [ngClass]="{'has-error':ExperienceLevelId.invalid && ExperienceLevelId.touched}">
+                            <label class="form-control-label" for="ExperienceLevel">Experience Level</label>
+                            <select [(ngModel)]="model.ExperienceLevelId" #ExperienceLevelId="ngModel" required class="form-control" name="ExperienceLevel">
+                                <option *ngFor="let level of experienceLevels" [value]="level.ExperienceLevelId">{{level.LevelName}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="pull-right">
+                        <input class="btn btn-primary " (click)="createUser()" value="Register" [disabled]='!form.valid'>
+                        <a class="btn btn-default" onclick="return confirm('Are you sure to leave? The entered data will not be saved.')" href="/home">Cancel</a>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+        <div class="m-b">
+            Alread have an account ?
+            <a class="text-danger" [routerLink]="['/login']">Login here</a>
+        </div>
+    </div>
+</div>

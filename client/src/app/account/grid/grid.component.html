@@ -1,0 +1,61 @@
+<div class="row">
+  <div class="container">
+    <div class="box_shadow" style="border:3px solid #7f7f7f; width:100%; float:left;">
+      <div class='col-sm-2'>
+        <div class="text-center">
+          <img class="img-responsive" src="/assets/images/codico_logo.png" class="codico-logo">
+        </div>
+        <img src="/assets/images/ipek_logo.png" class="ipek-logo img-responsive">
+        <br/>
+        <div style='background-color: orange;padding: 20px;border: 2px solid darkgray;margin-top: 50px;'>
+          <img src="/assets/images/sign-info.png" height='32' width="32">
+          <span class="text-white">Select a category to which you would like to receive information and design guidelines.</span>
+        </div>
+      </div>
+      <div class="col-sm-10 right-box">
+        <div class="row">
+          <div class="col-sm-12">
+            <wizard [selectedStep]="'phases'"></wizard>
+          </div>
+          <div class="col-sm-12 categories-container">
+            <table class="table" *ngIf="data">
+              <tr>
+                <td class="fiber-fixed-width">
+                  <span class="fiber-box-header fiber-box bold">Activities of product engineering</span>
+                </td>
+                <td *ngFor="let activity of data.phases; let i=index" class="phaseNameStyle">
+                  
+                  <span class="box-heading bold" [title]="activity.phaseDescription" *ngIf="i != 2">{{ activity.phaseName }}</span>
+                  <span class="box-heading bold" *ngIf="i == 2">{{ activity.phaseName }}</span>
+                </td>
+              </tr>
+              <tr class="margined-border" *ngFor="let row of data.topicGroups; let i=index">
+                <td class="fiber-fixed-width">
+                  <span class="fiber-box bold" [class.active]="row.topics[0].topicsCount > 0 || row.topics[1].topicsCount > 0 || row.topics[2].topicsCount > 0" *ngIf="i == 5" title="This activity supports innovative, all-embracing search for possible solutions.  Various solution alternatives will be evaluated with regard to their suitability for fulfilling your objectives and boundary conditions. In this activity, however, no concrete design guidelines are provided.">{{ row.activityName }}</span>
+
+                  <span class="fiber-box bold" [class.active]="row.topics[0].topicsCount > 0 || row.topics[1].topicsCount > 0 || row.topics[2].topicsCount > 0" *ngIf="i == 6" title="This activity will provide concrete design advice, examples of good and bad design solutions, manufacturing restrictions with regard to different materials, geometry and manufacturing processes.">{{ row.activityName }}</span>
+
+                  <span class="fiber-box bold" [class.active]="row.topics[0].topicsCount > 0 || row.topics[1].topicsCount > 0 || row.topics[2].topicsCount > 0" *ngIf="i < 5 || i > 7">{{ row.activityName }}</span>
+                </td>
+                <td *ngFor="let col of row.topics" class="topicsNum">
+                  <a class="value-wrapper" *ngIf="col && col.topicsCount > 0" (click)="redirectToTopics(col.phaseId, row.activityId)">
+                    {{ col.topicsCount }} Topics
+                  </a>
+                </td>
+              </tr>
+            </table>
+            <div class="col-sm-8 col-md-offset-4">
+              <h4 class="text-right">
+                <strong>Time</strong>
+              </h4>
+              <div class="arrow">
+                <div class="line"></div>
+                <div class="point"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

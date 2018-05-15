@@ -1,0 +1,150 @@
+/* You can add global styles to this file, and also import other style files */
+@import '../node_modules/font-awesome/css/font-awesome.css';
+@import '../node_modules/primeng/resources/themes/omega/theme.css';
+@import '../node_modules/primeng/resources/primeng.min.css';
+
+.right-box {
+    border-left: 3px solid #7f7f7f;
+    padding: 10px;
+}
+.right-box-style
+{
+    /* border-left: 3px solid #7f7f7f; */
+    padding: 10px;
+}
+.box_shadow div.col-sm-2.leftBoxStyle
+{
+    border-right: 3px solid #7f7f7f !important;
+    padding-bottom:15px;
+}
+
+.right-box-result-style
+{
+    border-left: 3px solid #7f7f7f;
+    padding: 10px;
+    /* min-height:500px; */
+}
+
+.descriptionStyle
+{
+    min-height:450px;
+}
+
+.descriptionOuterStyle
+{
+    border:1px solid #7f7f7f;
+    padding:10px;    
+}
+
+.descriptionRowStyle
+{
+    margin-right:0 !important;
+    margin-left:0 !important;
+}
+
+.outer-box-style
+{
+    margin-bottom:20px;
+}
+.filterStyle
+{
+    min-height: 642px;
+}
+.finishStyle
+{
+    margin-top:10px;
+}
+
+.cat-head {
+    margin: 10px auto;
+    font-weight: 700;
+    font-style: italic;
+}
+.text-info
+{
+    text-align:left;
+    color: #31708f;
+}
+
+.text-info-right
+{
+    text-align:right;
+    color: #31708f;    
+}
+
+td.topicsNum
+{
+    padding: 0px 8px 4px 8px !important;
+    line-height:2.4 !important;
+}
+td.phaseNameStyle
+{
+    padding: 2px 0 6px 6px !important;
+}
+a:hover, a:active, a:focus
+{
+    color:#ffffff;
+}
+.box
+{
+    background:#e3e3e3;
+}
+/* .box {
+    margin: 2px auto;
+    border: 1px solid #7f7f7f;
+    border-radius: 10px;
+    padding: 7px;
+    background-color: #e3e3e3;
+    min-height: 25px;
+}
+.box span
+{
+    font-size: 14px;
+    font-weight: 600;
+    color: #7f7f7f;
+    text-decoration: none;
+} */
+.res-menu.relevant {
+    margin-top: 70px;
+}
+
+.fiber-box.active
+{
+    background:#009682;
+    color:#ffffff;
+}
+.cat-header-custom
+{
+    width:100%;
+}
+
+ul.questions-ul {list-style: none; counter-reset: li}
+li.questions-li::before {
+    content: counter(li);
+    line-height: 32px;
+    color: #fff;
+    background: teal;
+    padding:9px;    
+}
+li.questions-li 
+{counter-increment: li}
+.activities-li.active
+{
+    background:#009682;
+    color:#ffffff;
+}
+.activities-li.active a
+{
+    color:#ffffff !important;
+}
+
+ul.relevantMenu-ul {list-style: none; counter-reset: li1}
+li.relevantMenu-li::before {
+    content: counter(li1);
+    line-height: 32px;
+    color: #fff;
+    background: teal;
+    padding:5px;    
+}
+li.relevantMenu-li 
+{counter-increment: li1}

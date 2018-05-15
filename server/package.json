@@ -1,0 +1,25 @@
+{
+  "name": "capslock",
+  "version": "1.0.0",
+  "description": "capslock",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.14.0",
+    "jsonwebtoken": "^8.2.1",
+    "mssql": "^3.3.0",
+    "xml2js": "^0.4.19"
+  },
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git"
+  },
+  "author": "rahman",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^1.17.3"
+  }
+}

@@ -1,0 +1,5 @@
+<ul class="wizard" style="padding:15px">
+  <li *ngFor="let item of items" [class.selected]="item.selected">
+    <a (click)="goToStep(item)" href="javascript:void(0);">{{ item.name }}</a>
+  </li>
+</ul>

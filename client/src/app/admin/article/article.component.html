@@ -1,0 +1,72 @@
+<section class="content-header">
+    <h1>
+        Articles
+        <small>CRUD</small>
+    </h1>
+</section>
+<section class="content container-fluid">
+    <p-table [value]="articles" selectionMode="single" [(selection)]="selectedArticle" (onRowSelect)="onRowSelect($event)">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Result Menu</th>
+                <th>Remove</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData>
+            <tr [pSelectableRow]="rowData">
+                <td>{{rowData.Title}}</td>
+                <td>{{rowData.Description | slice:0:99}}</td>
+                <td>{{rowData.ResultMenuName}}</td>
+                <td>
+                    <a class="btn-danger" (click)="remove(rowData.ArticleId)">Remove</a>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+    <button (click)="addNew()" class="m-t-20 btn btn-primary">
+        <i class="fa fa-plus"></i>&nbsp; Add</button>
+
+    <!-- edit modal -->
+    <p-dialog header="Article Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" [width]="800">
+        <div class="ui-g ui-fluid" *ngIf="article">
+            <div class="ui-g-12">
+                <div class="ui-g-2">
+                    <label for="title">Title</label>
+                </div>
+                <div class="ui-g-10 p-0">
+                    <input class="form-control" required pInputText id="title" [(ngModel)]="article.Title" />
+                </div>
+            </div>
+            <div class="ui-g-12">
+                <div class="ui-g-2">
+                    <label for="description">Description</label>
+                </div>
+                <div class="ui-g-10 p-0">
+                    <p-editor [(ngModel)]="article.Description" required pInputText id="description" [style]="{'height':'200px'}"></p-editor>
+                    
+                </div>
+            </div>
+            <div class="ui-g-12">
+                <div class="ui-g-2">
+                    <label for="ResultMenuId">Result Menu</label>
+                </div>
+                <div *ngIf='resultMenu && resultMenu.length > 0' class="form-group" [ngClass]="{'has-error':ResultMenuId.invalid && ResultMenuId.touched}"
+                    class="ui-g-10 p-0">
+                    <select [(ngModel)]="article.ResultMenuId" #ResultMenuId="ngModel" required class="form-control" name="ResultMenuId">
+                        <option *ngFor="let menu of resultMenu" [value]="menu.ResultMenuId">{{menu.Name}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <p-footer>
+            <div class="ui-dialog-buttonpane ui-helper-clearfix">
+                <button (click)="close()" class="m-t-20 btn btn-danger">
+                    <i class="fa fa-close"></i>&nbsp; Cancel</button>
+                <button (click)="save()" class="m-t-20 btn btn-primary">
+                    <i class="fa fa-check"></i>&nbsp; Save</button>
+            </div>
+        </p-footer>
+    </p-dialog>
+</section>

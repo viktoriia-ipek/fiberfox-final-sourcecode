@@ -1,0 +1,29 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand active" [routerLink]="['/home']">Fiberfox</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a [routerLink]="['/home']">Home</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav pull-right">
+                <li class="">
+                    <a [routerLink]="['/login']">Login</a>
+                </li>
+                <li>
+                    <a [routerLink]="['/signup']">Sign Up</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="col-sm-6 col-sm-offset-3">
+    <div class="shadowed p-100 tac">
+        <h4>
+            You have successfully registered. Wait for the administrator to approve it.
+        </h4>
+    </div>
+</div>

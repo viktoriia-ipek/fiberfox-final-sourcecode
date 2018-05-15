@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="container">
+    <div class="box_shadow" style="border:3px solid #7f7f7f; width:100%; float:left;">
+      <div class='col-sm-2'>
+        <div class="text-center">
+          <img class="img-responsive" src="/assets/images/codico_logo.png" class="codico-logo">
+        </div>
+        <img src="/assets/images/ipek_logo.png" class="ipek-logo img-responsive">
+        <br/>
+        <div style='background-color: orange;padding: 20px;border: 2px solid darkgray;margin-top: 50px;'>
+          <img src="/assets/images/sign-info.png" height='32' width="32">
+          <span class="text-white">Select a category to which you would like to receive information and design guidelines.</span>
+        </div>
+      </div>
+      <div class="col-sm-10 right-box" style="padding:15px 0">
+        <div class="row">
+          <div class="col-sm-12">
+            <wizard [selectedStep]="'topics'"></wizard>
+          </div>
+
+          <div class="col-sm-12">
+            <div class="col-sm-4">
+              <div class="dashed-border">
+                <ul *ngIf="activities" class="cat-sub-items-container">
+                  <li class="cat-sub-item bold" style="background: #27458b; text-align:center; color:white;">
+                    Activities of product engineering
+                  </li>
+                  <li class="cat-sub-item fiber-box bold activities-li" [class.active]="activity.ActivityId == activityId" *ngFor="let activity of activities">
+                    <a href="javascript:void(0)"> {{ activity.Name }}</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-sm-8">
+              <ul *ngIf="data && data.length > 0" class="cat-sub-items-container">
+                <li class="cat-item-header">
+                  {{data[0].PhaseName}}
+                </li>
+                <li class="cat-sub-item" [class.item-disabled]="!topic.IsActive"  *ngFor="let topic of data">
+                  <a (click)="selectTopic(topic)">{{ topic.Name }}</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

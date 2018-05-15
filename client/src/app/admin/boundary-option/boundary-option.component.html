@@ -1,0 +1,57 @@
+<section class="content-header">
+    <h1>
+        Boundary Options
+        <small>CRUD</small>
+    </h1>
+</section>
+<section class="content container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <p-table [value]="boundaryOptions" selectionMode="single" [(selection)]="selectedBoundaryOption" (onRowSelect)="onRowSelect($event)">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Text</th>
+                        <th>Remove</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-boundaryOption>
+                    <tr [pSelectableRow]="boundaryOption" title="Click on the row to edit">
+                        <td>{{boundaryOption.BoundaryText}}</td>
+                        <td>
+                            <a class="btn-danger" (click)="remove(boundaryOption.BoundaryOptionId)">Remove</a>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+            <button (click)="addNew()" class="m-t-20 btn btn-primary">
+                <i class="fa fa-plus"></i>&nbsp; Add New Boundary Option</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 content" style="overflow-x: scroll;">
+            <boundary-option-grid #boundaryGrid  *ngIf="boundaryId" [boundaryId]="boundaryId"></boundary-option-grid>
+        </div>
+    </div>
+</section>
+
+<!-- edit modal -->
+<p-dialog header="Filter Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" [width]="500">
+    <div class="ui-g ui-fluid" *ngIf="boundaryOption">
+        <div class="ui-g-12">
+            <div class="ui-g-4">
+                <label for="text">Text</label>
+            </div>
+            <div class="ui-g-8 p-0">
+                <input class="form-control" pInputText id="text" [(ngModel)]="boundaryOption.BoundaryText" />
+            </div>
+        </div>
+    </div>
+    <p-footer>
+        <div class="ui-dialog-buttonpane ui-helper-clearfix">
+            <button (click)="close()" class="m-t-20 btn btn-danger">
+                <i class="fa fa-close"></i>&nbsp; Cancel</button>
+            <button (click)="save()" class="m-t-20 btn btn-primary">
+                <i class="fa fa-check"></i>&nbsp; Save</button>
+        </div>
+    </p-footer>
+</p-dialog>

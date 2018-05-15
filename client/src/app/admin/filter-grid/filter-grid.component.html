@@ -1,0 +1,18 @@
+<table class="table table-bordered table-hover" *ngIf="data && data.filterValues && data.filterValues.length > 0">
+  <tr>
+    <td style="font-weight:bold;">Target Filters / Result Menu</td>
+    <td *ngFor="let menu of data.resultMenu">
+      {{ menu.ResultMenuName }}
+    </td>
+  </tr>
+  <tr *ngFor="let model of data.filterValues">
+    <td>
+      {{ model.filterText }}
+    </td>
+    <td *ngFor="let menu of model.resultMenu">
+      <input type="number" [(ngModel)]="menu.AlgorithmValue" name="AlgorithmValue">
+    </td>
+  </tr>
+</table>
+<button (click)="saveFilterValues()" class="btn btn-primary" [disabled]='isSavingValues'>
+  <i class="fa fa-plus"></i>&nbsp; Save</button>

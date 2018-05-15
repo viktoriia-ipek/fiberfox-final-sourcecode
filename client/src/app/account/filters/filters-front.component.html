@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="container">
+    <div class="box_shadow" style="border:3px solid #7f7f7f; width:100%; float:left;">
+      <div class='col-sm-2'>
+        <div class="text-center">
+          <img class="img-responsive" src="/assets/images/codico_logo.png" class="codico-logo">
+        </div>
+        <img src="/assets/images/ipek_logo.png" class="ipek-logo img-responsive">
+        <br/>
+        <div style='background-color: orange;padding: 20px;border: 2px solid darkgray;margin-top: 50px;'>
+          <img src="/assets/images/sign-info.png" height='32' width="32">
+          <span class="text-white">Select a topic/topics you would like to find out more about.</span>
+        </div>
+      </div>
+
+      <div class="col-sm-10 right-box filterStyle">
+        <div class="row">
+          <div class="col-sm-12">
+            <wizard [selectedStep]="'targets'"></wizard>
+          </div>
+
+          <div class="col-sm-10 col-sm-offset-1 filter-groups">
+            <div *ngFor="let group of data" class="col-sm-5 filter-group">
+              <div class="col-sm-12 filters-list">
+                <div *ngIf="group.MaxAllowedOptions" class="filter-header-metadata">
+                  Max Allowed Options: {{ group.MaxAllowedOptions }}
+                </div>
+                <div class="filter-header">
+                  {{ group.Title }}
+                </div>
+                <div (click)="filterToggle(filter)" class="filter-container" *ngFor="let filter of group.Filters" [class.area-disabled]="filter.disabled">
+                  <label for="{{filter.TargetFilterId}}">{{ filter.FilterText }}</label>
+                  <i class="fiber-check-box pull-right" [class.fbox-selected]="filter.Selected"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <button (click)="next()" class="btn btn-success pull-right">Next</button>
+      </div>
+
+      <!-- <div class="col-sm-12" style="margin-bottom:20px;">
+        <button (click)="next()" class="btn btn-success pull-right">Next</button>
+      </div> -->
+
+    </div>
+  </div>
+</div>

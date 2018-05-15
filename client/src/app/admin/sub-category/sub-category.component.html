@@ -1,0 +1,83 @@
+<section class="content-header">
+    <h1>
+        Sub Categories
+        <small>CRUD</small>
+    </h1>
+</section>
+<section class="content container-fluid">
+    <p-table [value]="subCategories" selectionMode="single" [(selection)]="selectedSubCategory" (onRowSelect)="onRowSelect($event)">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Name</th>
+                <th>Category Name</th>
+                <th>Sort Order</th>
+                <th>IsActive</th>
+                <th>Delete</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData>
+            <tr [pSelectableRow]="rowData">
+                <td>{{rowData.Name}}</td>
+                <td>{{rowData.CategoryName}}</td>
+                <td>{{rowData.SortOrder}}</td>
+                <td>{{rowData.IsActive}}</td>
+                <td>
+                    <a class="btn-danger" (click)="remove(rowData.SubCategoryId)">Remove</a>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+    <button (click)="addNew()" class="m-t-20 btn btn-primary">
+        <i class="fa fa-plus"></i>&nbsp; Add</button>
+
+    <!-- edit modal -->
+    <p-dialog header="SubCategory Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" [width]="500">
+        <div class="ui-g ui-fluid" *ngIf="subCategory">
+            <div class="ui-g-12">
+                <div class="ui-g-4">
+                    <label for="name">Name</label>
+                </div>
+                <div class="ui-g-8 p-0">
+                    <input class="form-control" required pInputText id="name" [(ngModel)]="subCategory.Name" />
+                </div>
+            </div>
+            <div class="ui-g-12">
+                <div class="ui-g-4">
+                    <label for="name">Category Name</label>
+                </div>
+                <div *ngIf='categories && categories.length > 0' class="form-group" [ngClass]="{'has-error':CategoryId.invalid && CategoryId.touched}"
+                    class="ui-g-8 p-0">
+                    <select [(ngModel)]="subCategory.CategoryId" #CategoryId="ngModel" required class="form-control" name="CategoryId">
+                        <option *ngFor="let category of categories" [value]="category.CategoryId">{{category.Name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="ui-g-12">
+                    <div class="ui-g-4">
+                        <label for="IsActive">IsActive</label>
+                    </div>
+                    <div class="ui-g-8 p-0">
+                        <label>
+                            <input type="checkbox" name="IsActive" [(ngModel)]="subCategory.IsActive">
+                        </label>
+                    </div>
+                </div>
+            <div class="ui-g-12">
+                <div class="ui-g-4">
+                    <label for="sortorder">SortOrder</label>
+                </div>
+                <div class="ui-g-8 p-0">
+                    <input class="form-control" required pInputText id="sortorder" [(ngModel)]="subCategory.SortOrder" />
+                </div>
+            </div>
+        </div>
+        <p-footer>
+            <div class="ui-dialog-buttonpane ui-helper-clearfix">
+                <button (click)="close()" class="m-t-20 btn btn-danger">
+                    <i class="fa fa-close"></i>&nbsp; Cancel</button>
+                <button (click)="save()" class="m-t-20 btn btn-primary">
+                    <i class="fa fa-check"></i>&nbsp; Save</button>
+            </div>
+        </p-footer>
+    </p-dialog>
+</section>

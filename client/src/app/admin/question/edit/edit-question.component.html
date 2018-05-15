@@ -1,0 +1,44 @@
+<section class="content-header">
+    <h1>
+        Edit Question
+        <small>CRUD</small>
+    </h1>
+</section>
+<section class="content container-fluid">
+    <div class="row">
+        <div class="col-md-8">
+            <div *ngIf="model" class="box box-primary">
+                <div class="box-body">
+                    <div class="col-md-12">
+                        <form name="form" #form="ngForm">
+                            <div class="form-group" [ngClass]="{'has-error':QuestionText.invalid && QuestionText.touched}">
+                                <label class="form-control-label" for="QuestionText">Question</label>
+                                <input [(ngModel)]="model.QuestionText" #QuestionText="ngModel" required class="form-control" name="QuestionText" placeholder="Enter the Question">
+                            </div>
+                            <div *ngIf='topics && topics.length > 0' class="form-group" [ngClass]="{'has-error':TopicId.invalid && TopicId.touched}">
+                                <label class="form-control-label" for="TopicId">Topic</label>
+                                <select placeholder="Topic" [(ngModel)]="model.TopicId" #TopicId="ngModel" required class="form-control" name="TopicId">
+                                    <option *ngFor="let topic of topics" [value]="topic.TopicId">{{topic.Name}}</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" name="HasTargetFiltering" [(ngModel)]="model.HasTargetFiltering"> Has Target Filtering
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" name="HasBoundaryOptions" [(ngModel)]="model.HasBoundaryOptions"> Has Boundary Option
+                            </div>
+                            <div class="form-group">
+                                <p-multiSelect [options]="resultMenuItems" optionLabel="Name" dataKey="ResultMenuId" [(ngModel)]="model.ResultMenuItems" 
+                                    [defaultLabel]="'Result Menu'" #ResultMenuItems="ngModel" name="ResultMenuItems">
+                                </p-multiSelect>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="box-footer">
+                    <button type="submit" [disabled]='!form.valid' (click)="save()" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
