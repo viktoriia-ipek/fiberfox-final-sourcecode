@@ -1,4 +1,4 @@
-# capslock
+# fiberfox
 
 cd server
 npm install
