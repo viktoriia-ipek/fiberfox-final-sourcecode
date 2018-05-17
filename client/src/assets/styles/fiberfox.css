@@ -392,8 +392,8 @@ td.fiber-fixed-width span.fiber-box{
     margin-bottom: 10px;
 }
 .filter-header-metadata{
-    background-color: lightyellow;
-    margin: 15px 0px 10px 0px;
+    background-color: #FFD27F;
+    /* margin: 15px 0px 10px 0px; */
     color: #000;
     border-radius: 7px;
     padding: 10px;
@@ -403,22 +403,22 @@ td.fiber-fixed-width span.fiber-box{
 }
 .filter-header{
     background-color: #bfbfbf;
-    margin: 0px;
+    margin: 1px;
     color: #000;
     border-radius: 7px;
-    padding: 10px;
+    padding: 1px;
     text-align: center;
-    font-size: 16px;
-    margin-top: 10px;
-    font-weight: 700;
-    margin-bottom: 10px;
+    font-size: 14px;
+    margin-top: 8px;
+    font-weight: 200;
+    margin-bottom: 4px;
 }
 .filter-container{
-    padding: 7px;
-    border: 1px solid darkgreen;
+    padding: 5px;
+    border: 1px solid #000000;
     background-color: #FFF;
     border-radius: 10px;
-    margin-bottom: 5px;
+    margin-bottom: 4px;
     cursor: pointer;
 }
 .fiber-check-box:before{
@@ -446,6 +446,11 @@ td.fiber-fixed-width span.fiber-box{
     z-index: 999;
     pointer-events: none;
     opacity: 0.5;
+}
+.btn-success
+{
+    background-color: #1a5ee2 !important;
+    border-color: white !important;
 }
 /* START OF social media icons plugin styles
 source: https://codepen.io/vpdemo/pen/zxRYdw*/
