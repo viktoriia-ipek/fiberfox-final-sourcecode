@@ -131,7 +131,7 @@ export class ResultComponent implements OnInit {
             .subscribe(d => {
                 this.article = d[0];
                 d.forEach(element => {
-                    this.article.Description += element.Description;
+                    this.article.Description += d.Description;
                 });
             });
     }
