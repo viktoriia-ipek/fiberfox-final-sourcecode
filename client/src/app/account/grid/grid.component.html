@@ -25,15 +25,15 @@
                 </td>
                 <td *ngFor="let activity of data.phases; let i=index" class="phaseNameStyle">
                   
-                  <span class="box-heading bold" [title]="activity.phaseDescription" *ngIf="i != 2">{{ activity.phaseName }}</span>
+                  <span class="box-heading bold" *ngIf="i != 2">{{ activity.phaseName }} <img src="/assets/images/sign-info.png" height='20' width="20" class="gridTooltipStyle"  [title]="activity.phaseDescription" /></span>
                   <span class="box-heading bold" *ngIf="i == 2">{{ activity.phaseName }}</span>
                 </td>
               </tr>
               <tr class="margined-border" *ngFor="let row of data.topicGroups; let i=index">
                 <td class="fiber-fixed-width">
-                  <span class="fiber-box bold" [class.active]="row.topics[0].topicsCount > 0 || row.topics[1].topicsCount > 0 || row.topics[2].topicsCount > 0" *ngIf="i == 5" title="This activity supports innovative, all-embracing search for possible solutions.  Various solution alternatives will be evaluated with regard to their suitability for fulfilling your objectives and boundary conditions. In this activity, however, no concrete design guidelines are provided.">{{ row.activityName }}</span>
+                  <span class="fiber-box bold" [class.active]="row.topics[0].topicsCount > 0 || row.topics[1].topicsCount > 0 || row.topics[2].topicsCount > 0" *ngIf="i == 5">{{ row.activityName }} <img src="/assets/images/sign-info.png" height='20' width="20" class="gridTooltipStyle"  title="This activity supports innovative, all-embracing search for possible solutions.  Various solution alternatives will be evaluated with regard to their suitability for fulfilling your objectives and boundary conditions. In this activity, however, no concrete design guidelines are provided." /></span>
 
-                  <span class="fiber-box bold" [class.active]="row.topics[0].topicsCount > 0 || row.topics[1].topicsCount > 0 || row.topics[2].topicsCount > 0" *ngIf="i == 6" title="This activity will provide concrete design advice, examples of good and bad design solutions, manufacturing restrictions with regard to different materials, geometry and manufacturing processes.">{{ row.activityName }}</span>
+                  <span class="fiber-box bold" [class.active]="row.topics[0].topicsCount > 0 || row.topics[1].topicsCount > 0 || row.topics[2].topicsCount > 0" *ngIf="i == 6"  >{{ row.activityName }} <img src="/assets/images/sign-info.png" height='20' width="20" class="gridTooltipStyle"  title="This activity will provide concrete design advice, examples of good and bad design solutions, manufacturing restrictions with regard to different materials, geometry and manufacturing processes."/></span>
 
                   <span class="fiber-box bold" [class.active]="row.topics[0].topicsCount > 0 || row.topics[1].topicsCount > 0 || row.topics[2].topicsCount > 0" *ngIf="i < 5 || i > 7">{{ row.activityName }}</span>
                 </td>

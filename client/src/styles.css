@@ -148,3 +148,12 @@ li.relevantMenu-li::before {
 }
 li.relevantMenu-li 
 {counter-increment: li1}
+
+.home-text-info
+{
+    color: #31708f;
+}
+.gridTooltipStyle
+{
+    float: right;
+}

@@ -5,8 +5,8 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class BaseService {
-    protected host: string = 'http://localhost:3000';
-    // protected host: string = 'https://fiberfox-backend-ipek.herokuapp.com';
+    // protected host: string = 'http://localhost:3000';
+    protected host: string = 'https://fiberfox-backend-ipek.herokuapp.com';
     
     protected hostAPI: string = this.host + '/api';
 
