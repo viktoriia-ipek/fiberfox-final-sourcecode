@@ -58,7 +58,7 @@ typings/
 .env
 
 # custom: settings and configuration
-config/
+
 
 #custom-files:
 tasks.PNG
