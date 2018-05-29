@@ -24,7 +24,7 @@ var exportedRoutes = function (app) {
     routes.route('/api/front/resultmenu/:id').get(frontController.getArticles);
     routes.use('/api/front/resultmenubyq/:id', secureRoutes);
     routes.route('/api/front/resultmenubyq/:id').get(frontController.getResultMenuByQuestionId);
-    routes.route('/api/front/articlelist').post(frontController.getMultipleArticles);
+    
 
 
 

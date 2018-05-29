@@ -174,14 +174,7 @@ var frontController = {
 
   getArticles: function (req, res) {
     baseController.find(req, res, 'Articles', 'ResultMenuId', req.params.id);
-  },
-
-  getMultipleArticles: function (req, res) {
-    var query = `SELECT * FROM Articles
-    WHERE ResultMenuId IN (${req.body.list})`;
-    baseController.executeQuery(query)
-      .then(result => res.json(result))
-      .catch((err) => baseController.errorResponse(err, res));
+  
   }
 };
 

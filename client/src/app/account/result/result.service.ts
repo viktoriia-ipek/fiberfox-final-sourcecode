@@ -31,8 +31,5 @@ export class ResultService extends BaseService {
             .map(res => res.json());
     }
 
-    getMultipleArticles(menuIdList) {
-        return this.post(`${this.hostAPI}/front/articlelist`, { list: menuIdList }, this.authorisedOptions())
-            .map(res => res.json());
-    }
+    
 }

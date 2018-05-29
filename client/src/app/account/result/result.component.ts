@@ -67,8 +67,9 @@ export class ResultComponent implements OnInit {
 
                     this.relevantMenu = data.filter(d => d.Ranking > 0);
                     if (this.relevantMenu && this.relevantMenu.length > 0) {
+                        this.showArticle(this.relevantMenu[0].ResultMenuId)
                         console.log(this.relevantMenu.map(m => m.ResultMenuId).toString());
-                        this.getAllArticles(this.relevantMenu.map(m => m.ResultMenuId).toString());
+                        
                     }
                     this.othersMenu = data.filter(d => d.Ranking <= 0);
 
@@ -80,8 +81,9 @@ export class ResultComponent implements OnInit {
                         console.log(data);
                         this.relevantMenu = data;
                         if (this.relevantMenu && this.relevantMenu.length > 0) {
+                            this.showArticle(this.relevantMenu[0].ResultMenuId);
                             console.log(this.relevantMenu.map(m => m.ResultMenuId).toString());
-                            this.getAllArticles(this.relevantMenu.map(m => m.ResultMenuId).toString());
+                            
                         }
                     });
                 this.isQuestion = true;
@@ -109,11 +111,12 @@ export class ResultComponent implements OnInit {
                     setTimeout(() => {
                         console.log(this.leftBarElement.nativeElement.offsetHeight);
                         console.log(this.rightBarElement.nativeElement.offsetHeight);
-                        if (this.leftBarElement.nativeElement.offsetHeight >= this.rightBarElement.nativeElement.offsetHeight) {
-                            this.renderer.addClass(this.leftBarElement.nativeElement, 'leftBoxStyle');
+                        if(this.leftBarElement.nativeElement.offsetHeight >= this.rightBarElement.nativeElement.offsetHeight)
+                        {
+                            this.renderer.addClass(this.leftBarElement.nativeElement,'leftBoxStyle');
                         }
                         else {
-                            this.renderer.addClass(this.rightBarElement.nativeElement, 'right-box-result-style');
+                            this.renderer.addClass(this.rightBarElement.nativeElement,'right-box-result-style');
                         }
                     }, 5000);
 
@@ -126,13 +129,5 @@ export class ResultComponent implements OnInit {
         }
     }
 
-    private getAllArticles(menuList) {
-        this.dataService.getMultipleArticles(menuList)
-            .subscribe(d => {
-                this.article = d[0];
-                d.forEach(element => {
-                    this.article.Description += d.Description;
-                });
-            });
-    }
+    
 }
