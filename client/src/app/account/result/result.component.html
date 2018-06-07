@@ -5,10 +5,11 @@
             <div class="res-menu relevant">
                 <div class="container-el">
                   <span>Relevant Information</span>
+                  <span *ngIf="relevantMenu && relevantMenu.length > 0" (click)="collapseRelevantMenu()" class="collapse-icon">v</span>
                   <span *ngIf="!relevantMenu || relevantMenu.length === 0">No items</span>
                 </div>
-                <ul class="relevantMenu-ul" *ngIf="relevantMenu && relevantMenu.length > 0">
-                  <li class="item relevantMenu-li" *ngFor="let menu of relevantMenu">
+                <ul class="relevantMenu-ul" [ngClass]="[showRelevantMenu ? 'display-block' : 'display-none']" *ngIf="relevantMenu && relevantMenu.length > 0">
+                  <li id=menu{{menu.ResultMenuId}} [ngClass]="{'highlightMenu': i==0}" class="item relevantMenu-li" *ngFor="let menu of relevantMenu; let i=index">
                     <a class="menu-item" (click)="showArticle(menu.ResultMenuId)">{{ menu.Name }}</a>
                   </li>
                 </ul>
@@ -16,10 +17,11 @@
               <div *ngIf="!isQuestion" class="res-menu others">
                 <div class="container-el">
                   <span>Other Information</span>
+                  <span *ngIf="othersMenu && othersMenu.length > 0" (click)="collapseOthersMenu()" class="collapse-icon">v</span>
                   <span *ngIf="!othersMenu || othersMenu.length === 0">No items</span>
                 </div>
-                <ul *ngIf="othersMenu && othersMenu.length > 0">
-                  <li class="item" *ngFor="let menu of othersMenu">
+                <ul class="othersMenu-ul" [ngClass]="[showOthersMenu ? 'display-block' : 'display-none']" *ngIf="othersMenu && othersMenu.length > 0">
+                  <li id=menu{{menu.ResultMenuId}} class="item" *ngFor="let menu of othersMenu">
                     <a class="menu-item" (click)="showArticle(menu.ResultMenuId)">{{ menu.Name }}</a>
                   </li>
                 </ul>
@@ -32,11 +34,16 @@
           </div>
         </div>
         <div class="row descriptionRowStyle">
-          <div *ngIf="article" class="col-sm-12 descriptionStyle">
-              <div class="descriptionOuterStyle">
-                <div [innerHtml]="article.Description"></div>
+          <div *ngIf="relevantMenu && relevantMenu.length > 0 && !menuItemClicked" class="col-sm-12 descriptionStyle">
+              <div [id]="menu.ResultMenuId" class="descriptionOuterStyle" *ngFor="let menu of relevantMenu">
+                <div [innerHtml]="menu.Description"></div>
             </div>
           </div>
+          <div *ngIf="menuItemClicked" class="col-sm-12 descriptionStyle">
+            <div [id]="article.ResultMenuId" class="descriptionOuterStyle">
+              <div [innerHtml]="article.Description"></div>
+          </div>
+        </div>
         </div>
         <div class="row finishStyle">
           <div class="col-sm-12">
